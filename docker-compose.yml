@@ -6,6 +6,8 @@ services:
     image: mariadb:10.7
     container_name: mariadb
     hostname: mariadb
+    ports:
+      - "3308:3306"
     volumes:
       - /var/lib/mysql:/var/lib/mysql
     env_file:
@@ -18,11 +20,12 @@ services:
     container_name : glpi
     hostname: glpi
     ports:
-      - "80:80"
+      - "8081:80"
+      - "9444:443"
     volumes:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
       - /var/www/html/glpi/:/var/www/html/glpi
     environment:
-      - TIMEZONE=Europe/Brussels
+      - TIMEZONE=America/Sao_Paulo
     restart: always
